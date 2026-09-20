@@ -1,0 +1,69 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sbc-template}[2005/01/14 v1.2 SBC article template]
+
+% Dimensões da página (A4) e Margens (SBC: 3cm topo/esq, 2cm base/dir)
+\RequirePackage[a4paper, top=3cm, left=3cm, right=2cm, bottom=2cm]{geometry}
+
+% Fonte Times
+\RequirePackage{times}
+
+\pagestyle{empty}
+
+\def\title#1{\gdef\@title{#1}}
+\def\author#1{\gdef\@author{#1}}
+\def\address#1{\gdef\@address{#1}}
+\def\inst#1{$^{#1}$}
+
+\def\maketitle{\par
+ \begingroup
+ \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+ \def\@makefnmark{\hbox to\z@{$\m@th^{\@thefnmark}$\hss}}
+ \long\def\@makefntext##1{\parindent 1em\noindent
+ \hbox to1.8em{\hss$\m@th^{\@thefnmark}$}##1}
+ \if@twocolumn
+ \twocolumn[\@maketitle]
+ \else \newpage
+ \global\@topnum\z@ \@maketitle \fi
+ \thispagestyle{empty}
+ \@thanks
+ \endgroup
+ \setcounter{footnote}{0}
+ \let\maketitle\relax
+ \let\@maketitle\relax
+ \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax
+}
+
+\def\@maketitle{\newpage
+ \null
+ \begin{center}
+ {\Large \bf \@title \par} \vskip 1.5em
+ {\large \lineskip .5em
+ \begin{tabular}[t]{c}\@author
+ \end{tabular}\par}
+ \vskip 1em
+ {\normalsize \@address \par}
+ \end{center}
+ \par
+ \vskip 1.5em}
+
+\renewenvironment{abstract}{%
+  \list{}{\advance\topsep by0.5cm\relax\small
+  \leftmargin=0.8cm
+  \labelwidth=\z@
+  \listparindent=\z@
+  \itemindent\listparindent
+  \rightmargin\leftmargin}\item[\hskip\labelsep
+                                    \bfseries Abstract.]\itshape}%
+  {\endlist}
+
+\newenvironment{resumo}{%
+  \list{}{\advance\topsep by0.5cm\relax\small
+  \leftmargin=0.8cm
+  \labelwidth=\z@
+  \listparindent=\z@
+  \itemindent\listparindent
+  \rightmargin\leftmargin}\item[\hskip\labelsep
+                                    \bfseries Resumo.]\itshape}%
+  {\endlist}
+
+\endinput
