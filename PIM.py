@@ -83,7 +83,7 @@ for meth_name in methods:
             
     print(f"CSV salvo: {csv_filename}")
 
-# Passo F: Gerar os gráficos para cada método
+# Passo F: Gerar os gráficos para cada método 8
 for meth_name in methods:
     plt.figure(figsize=(10, 5))
     plt.plot(results[meth_name]['frames'], results[meth_name]['min_vals'], label='min_val', color='blue')
